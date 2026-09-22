@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi pollito 💛</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:#03040d;
+  color:#fff;
+}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.scene{
+  position:relative;z-index:2;width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.nebula{
+  position:absolute;width:min(850px,110vw);height:min(850px,110vw);
+  border-radius:50%;
+  background:
+    radial-gradient(circle,rgba(255,216,70,.13) 0%,rgba(139,92,246,.10) 27%,rgba(30,41,90,.08) 48%,transparent 70%);
+  filter:blur(25px);
+  animation:nebula 9s ease-in-out infinite;
+}
+@keyframes nebula{50%{transform:scale(1.12) rotate(8deg);opacity:.8}}
+.content{
+  position:relative;text-align:center;padding:25px;
+  opacity:0;transform:translateY(25px) scale(.97);
+  transition:1.2s ease;
+}
+body.ready .content{opacity:1;transform:none}
+.small{font-size:.8rem;letter-spacing:5px;text-transform:uppercase;color:#fff4a3;margin-bottom:12px}
+h1{
+  font-size:clamp(2.7rem,8vw,6.5rem);line-height:1;
+  color:#ffe45c;
+  text-shadow:0 0 12px #ffd83d,0 0 35px rgba(255,210,50,.55),0 0 80px rgba(255,190,20,.25);
+  animation:title 4s ease-in-out infinite;
+}
+@keyframes title{50%{transform:translateY(-8px)}}
+.subtitle{margin-top:15px;color:#fffbdc;font-size:clamp(.9rem,2vw,1.1rem);letter-spacing:1.5px}
+.card{
+  margin:30px auto 0;width:min(370px,88vw);
+  padding:25px 22px;border-radius:28px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,225,90,.2);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 70px rgba(0,0,0,.35),0 0 35px rgba(255,213,45,.08);
+}
+.chick-wrap{
+  width:210px;height:190px;margin:-5px auto 10px;
+  position:relative;animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{50%{transform:translateY(-13px) rotate(1deg)}}
+.glow{
+  position:absolute;left:50%;top:55%;width:170px;height:170px;transform:translate(-50%,-50%);
+  border-radius:50%;background:rgba(255,218,50,.12);
+  box-shadow:0 0 50px rgba(255,218,50,.2);
+}
+.chick{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:142px;height:118px;border-radius:54% 54% 48% 48%;background:linear-gradient(145deg,#fff477,#ffc928);box-shadow:inset -10px -12px 20px rgba(190,125,0,.18),0 15px 30px rgba(0,0,0,.3)}
+.head{position:absolute;width:116px;height:102px;left:13px;top:-52px;border-radius:50%;background:linear-gradient(145deg,#fff477,#ffd32f)}
+.eye{position:absolute;z-index:5;top:-16px;width:12px;height:15px;border-radius:50%;background:#33200c}
+.eye:after{content:"";position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;top:2px;left:2px}
+.e1{left:42px}.e2{right:42px}
+.beak{position:absolute;z-index:6;top:-2px;left:50%;transform:translateX(-50%);border-left:12px solid transparent;border-right:12px solid transparent;border-top:17px solid #f59e0b}
+.wing{position:absolute;z-index:4;top:35px;width:56px;height:70px;background:#ffdc38;border-radius:70% 30% 60% 40%}
+.w1{left:-17px;transform:rotate(25deg)}.w2{right:-17px;transform:scaleX(-1) rotate(25deg)}
+.crest{position:absolute;z-index:6;top:-73px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.crest i{width:13px;height:23px;background:#ffb703;border-radius:70% 20% 70% 20%;transform:rotate(-20deg)}
+.crest i:nth-child(2){transform:translateY(-5px)}.crest i:nth-child(3){transform:rotate(20deg)}
+.feet{position:absolute;z-index:3;bottom:-15px;width:35px;height:13px;border-bottom:5px solid #f59e0b;border-radius:50%}
+.f1{left:35px}.f2{right:35px}
+.flower{
+  position:absolute;width:65px;height:65px;z-index:1;
+  animation:flower 7s ease-in-out infinite;
+}
+@keyframes flower{50%{transform:translateY(-25px) rotate(15deg)}}
+.petal{position:absolute;width:25px;height:39px;left:20px;top:10px;border-radius:50%;background:linear-gradient(#fff36b,#f5bd22);transform-origin:50% 100%;box-shadow:0 0 12px rgba(255,218,50,.5)}
+.petal:nth-child(1){transform:rotate(0) translateY(-10px)}
+.petal:nth-child(2){transform:rotate(60deg) translateY(-10px)}
+.petal:nth-child(3){transform:rotate(120deg) translateY(-10px)}
+.petal:nth-child(4){transform:rotate(180deg) translateY(-10px)}
+.petal:nth-child(5){transform:rotate(240deg) translateY(-10px)}
+.petal:nth-child(6){transform:rotate(300deg) translateY(-10px)}
+.center{position:absolute;z-index:4;width:19px;height:19px;left:23px;top:23px;border-radius:50%;background:#8b5a16;box-shadow:0 0 10px #ffd43b}
+.f1a{left:5%;top:20%;animation-delay:.3s}.f2a{right:6%;top:25%;transform:scale(.72);animation-delay:1.3s}
+.f3a{left:9%;bottom:12%;transform:scale(.8);animation-delay:2.2s}.f4a{right:10%;bottom:14%;transform:scale(.9);animation-delay:3s}
+.f5a{left:27%;top:12%;transform:scale(.48);animation-delay:1.7s}.f6a{right:27%;bottom:10%;transform:scale(.55);animation-delay:2.8s}
+.message{color:#fff6bd;font-size:.95rem;line-height:1.6}
+.heart{position:absolute;z-index:1;font-size:20px;color:#ffe04b;animation:heart 8s linear infinite;opacity:0}
+@keyframes heart{0%{transform:translateY(105vh) scale(.5);opacity:0}20%{opacity:.8}100%{transform:translateY(-15vh) scale(1.2);opacity:0}}
+.h1{left:18%;animation-delay:0s}.h2{left:76%;animation-delay:2.5s}.h3{left:45%;animation-delay:5s}
+.intro{
+  position:fixed;z-index:10;inset:0;background:#03040d;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:1s ease;
+}
+.intro.hide{opacity:0;pointer-events:none}
+.intro h2{color:#ffe45c;text-shadow:0 0 20px rgba(255,215,60,.7);font-size:clamp(2rem,6vw,4rem);margin-bottom:12px}
+.intro p{color:#fff9cf;margin-bottom:28px}
+button{
+  border:1px solid rgba(255,225,80,.5);border-radius:999px;
+  padding:13px 28px;background:rgba(255,215,60,.1);color:#fff3a0;
+  font-size:1rem;cursor:pointer;transition:.3s;
+  box-shadow:0 0 25px rgba(255,215,60,.12);
+}
+button:hover{transform:scale(1.06);background:rgba(255,215,60,.18)}
+@media(max-width:600px){
+  .flower{transform:scale(.65)}
+  .f1a{left:-2%}.f2a{right:-2%}.f3a{left:-1%}.f4a{right:-1%}
+}
+</style>
+</head>
+<body>
+<canvas id="space"></canvas>
+
+<div class="intro" id="intro">
+  <h2>✨ Tengo algo para ti ✨</h2>
+  <p>Un pequeño rincón entre estrellas...</p>
+  <button id="open">Abrir 💛</button>
+</div>
+
+<div class="scene">
+  <div class="nebula"></div>
+
+  <div class="flower f1a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+  <div class="flower f2a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+  <div class="flower f3a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+  <div class="flower f4a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+  <div class="flower f5a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+  <div class="flower f6a"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+
+  <div class="heart h1">💛</div><div class="heart h2">✨</div><div class="heart h3">💛</div>
+
+  <main class="content">
+    <div class="small">para alguien muy especial</div>
+    <h1>Para mi pollito 💛</h1>
+    <p class="subtitle">Entre estrellas, flores y un poquito de magia ✨</p>
+
+    <div class="card">
+      <div class="chick-wrap">
+        <div class="glow"></div>
+        <div class="chick">
+          <div class="head"></div>
+          <div class="crest"><i></i><i></i><i></i></div>
+          <span class="eye e1"></span><span class="eye e2"></span>
+          <div class="beak"></div>
+          <div class="wing w1"></div><div class="wing w2"></div>
+          <div class="feet f1"></div><div class="feet f2"></div>
+        </div>
+      </div>
+      <div class="message">
+        🌻 Un pequeño rincón hecho especialmente para ti 🌻
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const canvas=document.getElementById("space"),ctx=canvas.getContext("2d");
+let stars=[],w,h;
+function resize(){
+  w=canvas.width=innerWidth*devicePixelRatio;
+  h=canvas.height=innerHeight*devicePixelRatio;
+  canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  stars=Array.from({length:Math.min(260,Math.floor(innerWidth/4))},()=>({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:Math.random()*1.6+.2,a:Math.random(),s:Math.random()*.025+.006
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  for(const s of stars){
+    s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,245,190,${Math.max(.15,s.a)})`;ctx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+resize();addEventListener("resize",resize);draw();
+
+document.getElementById("open").addEventListener("click",()=>{
+  document.getElementById("intro").classList.add("hide");
+  document.body.classList.add("ready");
+});
+</script>
+</body>
+</html>
