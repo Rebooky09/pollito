@@ -1,6 +1,6 @@
 # Para mi pollito 💛
 
-Página web romántica con galaxia, estrellas, flores amarillas y un pollito.
+flores amarillas y un pollito.
 
 ## Publicarla gratis con GitHub Pages
 
